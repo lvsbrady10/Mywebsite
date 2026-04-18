@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sheldon Brady | IT & Cybersecurity Professional</title>
+    <title>Sheldon Brady | Business Management & Sales Professional</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1; /* Modern Indigo */
+            --primary: #059669; /* Business Growth Green */
             --bg: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
+            --text-main: #0f172a;
+            --text-muted: #475569;
             --white: #ffffff;
-            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -28,34 +28,34 @@
             line-height: 1.7;
         }
 
-        /* Header & Navigation */
+        /* Hero Header */
         header {
-            background-color: #0f172a; /* Deep Navy */
+            background-color: #111827; /* Sophisticated Charcoal */
             color: var(--white);
-            padding: 4rem 1rem;
+            padding: 5rem 1rem;
             text-align: center;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            letter-spacing: -0.025em;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
         }
 
         header p {
-            color: #94a3b8;
-            font-weight: 300;
+            color: #10b981; /* Accent Green */
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            font-size: 0.85rem;
         }
 
         nav {
             background: var(--white);
-            padding: 1rem;
+            padding: 1.2rem;
             position: sticky;
             top: 0;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
             z-index: 100;
         }
 
@@ -63,14 +63,14 @@
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         nav ul li a {
             color: var(--text-main);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-weight: 500;
+            font-size: 0.9rem;
             transition: color 0.2s;
         }
 
@@ -78,67 +78,72 @@
             color: var(--primary);
         }
 
-        /* Main Content Sections */
+        /* Professional Sections */
         section {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 3rem;
             background: var(--white);
-            border-radius: 12px;
+            border-radius: 16px;
             box-shadow: var(--card-shadow);
         }
 
         h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
         }
 
-        h2::after {
-            content: "";
-            height: 2px;
-            background: #e2e8f0;
-            flex-grow: 1;
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
-        .portfolio-item {
-            border: 1px solid #e2e8f0;
+        .skill-card {
+            background: #f1f5f9;
             padding: 1.5rem;
             border-radius: 8px;
-            background: #fdfdfd;
+            border-top: 3px solid var(--primary);
         }
 
-        /* Buttons/Links */
-        .contact-link {
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact CTA */
+        .contact-btn {
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
+            padding: 1rem 2rem;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: all 0.3s;
         }
 
-        .contact-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        .contact-btn:hover {
+            background: #047857;
+            transform: scale(1.02);
         }
 
         footer {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 4rem 1rem;
             color: var(--text-muted);
-            font-size: 0.875rem;
+            font-size: 0.9rem;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.8rem; }
-            section { margin: 1rem; }
+        @media (max-width: 768px) {
+            .highlight-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.2rem; }
+            section { margin: 1rem; padding: 1.5rem; }
         }
     </style>
 </head>
@@ -146,42 +151,47 @@
 
     <header>
         <h1>Sheldon Brady</h1>
-        <p>IT Professional | Web Designer | Cybersecurity Student</p>
+        <p>Business Management | B2B Sales | High Ticket Specialist</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">Executive Summary</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#contact">Connect</a></li>
         </ul>
     </nav>
 
     <section id="about">
         <h2>About Me</h2>
-        <p>I am a student at <strong>WGU</strong> specializing in Cybersecurity and Information Systems. With a background as a fitness professional, I bring a unique discipline to the world of technology.</p>
-        <p>My focus is on documenting my transition into tech and building a robust foundation in network security and web architecture.</p>
+        <p>I am a dedicated professional currently pursuing my <strong>Bachelor’s Degree in Business Management</strong> at WGU. My background as a fitness professional has instilled a high-performance mindset that I now apply to business operations and strategic sales.</p>
+        <p>I focus on understanding the intersection of human behavior and technology, documenting my journey into professional management and high-level commerce.</p>
     </section>
 
-    <section id="portfolio">
-        <h2>Portfolio</h2>
-        <div class="portfolio-item">
-            <h3>Website Development Project</h3>
-            <p style="color: var(--text-muted); margin-bottom: 1rem;">Process Documentation</p>
-            <p>Developing this responsive portfolio allowed me to practice semantic HTML5 and modern CSS Grid/Flexbox layouts.</p>
+    <section id="expertise">
+        <h2>Core Competencies</h2>
+        <div class="highlight-grid">
+            <div class="skill-card">
+                <h3>Business to Business (B2B)</h3>
+                <p>Focused on building long-term corporate relationships and streamlining the procurement process through strategic communication.</p>
+            </div>
+            <div class="skill-card">
+                <h3>High Ticket Sales</h3>
+                <p>Experienced in managing complex sales cycles and delivering high-value solutions that require trust, authority, and deep product knowledge.</p>
+            </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p style="margin-bottom: 1.5rem;">Let's connect and discuss technology or security opportunities.</p>
-        <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="contact-link">
-            View LinkedIn Profile
+    <section id="contact" style="text-align: center;">
+        <h2>Let's Collaborate</h2>
+        <p style="margin-bottom: 2rem;">Ready to discuss strategic partnerships or management opportunities.</p>
+        <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="contact-btn">
+            Connect on LinkedIn
         </a>
     </section>
 
     <footer>
-        <p>&copy; 2026 Sheldon Brady • Built with clean code</p>
+        <p>&copy; 2026 Sheldon Brady • Professional Portfolio</p>
     </footer>
 
 </body>
