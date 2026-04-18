@@ -25,27 +25,16 @@
             line-height: 1.7;
         }
 
+        /* Adjusted Header - Increased padding since Nav is gone */
         header {
             background-color: #111827;
             color: var(--white);
-            padding: 5rem 1rem;
+            padding: 6rem 1rem; 
             text-align: center;
         }
 
         header h1 { font-size: 2.8rem; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
         header p { color: #10b981; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; }
-
-        nav {
-            background: var(--white);
-            padding: 1.2rem;
-            position: sticky;
-            top: 0;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
-            z-index: 100;
-        }
-
-        nav ul { list-style: none; display: flex; justify-content: center; gap: 3rem; }
-        nav ul li a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
 
         .container {
             max-width: 900px;
@@ -59,13 +48,13 @@
             background: var(--white);
             border-radius: 16px;
             box-shadow: var(--card-shadow);
+            margin-top: -2rem; /* Pulls first section up slightly for a better overlap look */
         }
 
         h2 { font-size: 1.75rem; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
 
         .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
-        /* Cleaned up card style */
         .skill-card {
             background: #f1f5f9;
             padding: 2.5rem 2rem;
@@ -109,7 +98,7 @@
             position: fixed;
             top: 30px;
             right: 40px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -118,10 +107,7 @@
             background: #111827;
             padding: 12px 24px;
             border-radius: 6px;
-            transition: background 0.2s;
         }
-
-        .close-btn:hover { background: var(--primary); }
 
         .contact-btn {
             display: inline-block;
@@ -131,10 +117,7 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
-            transition: opacity 0.2s;
         }
-
-        .contact-btn:hover { opacity: 0.9; }
 
         footer { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
 
@@ -142,6 +125,7 @@
             .highlight-grid { grid-template-columns: 1fr; }
             .full-page-overlay { padding: 15% 8%; }
             .close-btn { top: 20px; right: 20px; width: calc(100% - 40px); text-align: center; }
+            section { margin-top: -3rem; }
         }
     </style>
 </head>
@@ -151,14 +135,6 @@
         <h1>Sheldon Brady</h1>
         <p>Business Management | B2B Sales | High Ticket Specialist</p>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="#about">Summary</a></li>
-            <li><a href="#expertise">Expertise</a></li>
-            <li><a href="#contact">Connect</a></li>
-        </ul>
-    </nav>
 
     <div class="container">
         <section id="about">
@@ -192,13 +168,13 @@
         <div class="close-btn" onclick="hidePage('b2b-page')">✕ Close Page</div>
         <h1 style="color: var(--primary); margin-bottom: 2rem;">B2B Strategic Operations</h1>
         <p>This section details my specific approach to Business-to-Business market expansion and operational efficiency.</p>
-        </div>
+    </div>
 
     <div id="sales-page" class="full-page-overlay">
         <div class="close-btn" onclick="hidePage('sales-page')">✕ Close Page</div>
         <h1 style="color: var(--primary); margin-bottom: 2rem;">High Ticket Sales Mastery</h1>
         <p>Insights into the high-value sales cycle and the psychological frameworks required to close complex deals.</p>
-        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 Sheldon Brady</p>
