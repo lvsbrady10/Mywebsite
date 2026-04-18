@@ -68,7 +68,10 @@
             transition: color 0.2s ease;
         }
 
-        nav a:hover { color: var(--primary); }
+        nav a:hover, nav a:focus { 
+            color: var(--primary); 
+            outline: none;
+        }
 
         header {
             background-color: #111827;
@@ -86,6 +89,7 @@
             padding: 0 2rem;
         }
 
+        /* Section Styling & Entrance Animation */
         section {
             margin-bottom: 4rem;
             padding: 3rem;
@@ -94,10 +98,47 @@
             box-shadow: var(--card-shadow);
             margin-top: -3rem;
             position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease-out forwards;
         }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stagger the animations */
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
 
         h2 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; }
         h2::before { content: ''; width: 4px; height: 24px; background: var(--primary); border-radius: 2px; }
+
+        /* Experience Timeline */
+        .experience-item {
+            border-left: 2px solid #e2e8f0;
+            padding-left: 1.5rem;
+            margin-left: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .experience-item h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.2rem;}
+        .experience-item span { font-size: 0.85rem; color: var(--primary); font-weight: 600; display: block; margin-bottom: 0.5rem;}
+        .experience-item p { font-size: 0.9rem; color: var(--text-muted); }
 
         .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
@@ -111,11 +152,12 @@
             text-align: left;
         }
 
-        .skill-card:hover {
+        .skill-card:hover, .skill-card:focus {
             transform: translateY(-5px);
             background: var(--white);
             border-color: var(--primary);
             box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+            outline: none;
         }
 
         .skill-card h3 { margin-bottom: 0.5rem; font-size: 1.15rem; }
@@ -124,7 +166,8 @@
 
         /* Connect Section Customization */
         .connect-box { text-align: center; }
-        .button-group { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .connect-box h2 { justify-content: center; } /* Fixes the vertical bar alignment */
+        .button-group { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
 
         .btn {
             padding: 0.8rem 2rem;
@@ -133,12 +176,50 @@
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            cursor: pointer;
+            font-family: inherit;
         }
 
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
-        .btn-outline { border: 2px solid #e2e8f0; color: var(--text-muted); }
-        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-primary { background: var(--primary); color: white; border: 2px solid var(--primary); }
+        .btn-primary:hover, .btn-primary:focus { background: var(--primary-hover); border-color: var(--primary-hover); transform: translateY(-2px); outline: none; }
+        
+        .btn-outline { border: 2px solid #e2e8f0; color: var(--text-muted); background: transparent; }
+        .btn-outline:hover, .btn-outline:focus { border-color: var(--primary); color: var(--primary); background: #f8fafc; transform: translateY(-2px); outline: none; }
+
+        /* Contact Form Styling */
+        .form-container {
+            max-width: 500px;
+            margin: 3rem auto 0;
+            text-align: left;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
 
         footer { 
             text-align: center; 
@@ -156,21 +237,25 @@
             z-index: 2000;
             display: none;
             overflow-y: auto;
-            padding: 10% 15%;
+            padding: 8% 15%;
             animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .close-btn {
-            position: absolute; top: 30px; right: 30px;
+            position: absolute; top: 20px; right: 30px;
             padding: 10px 20px; background: #111827; color: white;
             border-radius: 5px; cursor: pointer; border: none; font-weight: 700;
+            transition: background 0.3s ease;
         }
+        
+        .close-btn:hover, .close-btn:focus { background: #1f2937; outline: 2px solid var(--primary); outline-offset: 2px; }
 
         @media (max-width: 768px) {
             .highlight-grid { grid-template-columns: 1fr; }
-            .full-page-overlay { padding: 20% 10%; }
+            .full-page-overlay { padding: 15% 8%; }
+            .full-page-overlay h1 { margin-top: 3rem; } /* Prevents text overlap with close button on mobile */
         }
     </style>
 </head>
@@ -178,6 +263,7 @@
 
     <nav>
         <a href="#about">Summary</a>
+        <a href="#experience">Experience</a>
         <a href="#expertise">Expertise</a>
         <a href="#contact">Connect</a>
     </nav>
@@ -193,16 +279,30 @@
             <p>High-performance management specialist with a focus on <strong>relationship architecture</strong> and corporate growth. Currently finalizing a <strong>Bachelor of Science in Business Management</strong> at Western Governors University (WGU), bridging academic theory with real-world high-ticket closing experience.</p>
         </section>
 
+        <section id="experience">
+            <h2>Professional Milestones</h2>
+            <div class="experience-item">
+                <h3>High Ticket Sales Specialist</h3>
+                <span>Current Role/Industry &bull; Year - Present</span>
+                <p>Managed complex closing cycles for high-value contracts, consistently aligning client needs with premium solutions through trust-based negotiation.</p>
+            </div>
+            <div class="experience-item">
+                <h3>Business Management Candidate</h3>
+                <span>Western Governors University &bull; Expected Graduation</span>
+                <p>Developing advanced competencies in organizational behavior, data-driven strategy, and enterprise resource planning.</p>
+            </div>
+        </section>
+
         <section id="expertise">
             <h2>Core Expertise</h2>
             <div class="highlight-grid">
-                <div class="skill-card" id="b2b-card" onclick="showPage('b2b-page', 'b2b-card')" role="button" tabindex="0">
+                <div class="skill-card" id="b2b-card" onclick="showPage('b2b-page', 'b2b-card')" onkeydown="if(event.key === 'Enter' || event.key === ' ') showPage('b2b-page', 'b2b-card')" role="button" tabindex="0" aria-label="View B2B Strategy Methodology">
                     <h3>B2B Strategy</h3>
                     <p>Optimizing procurement cycles and corporate outreach using data-driven relationship management.</p>
                     <span class="expand-link">View Methodology →</span>
                 </div>
 
-                <div class="skill-card" id="sales-card" onclick="showPage('sales-page', 'sales-card')" role="button" tabindex="0">
+                <div class="skill-card" id="sales-card" onclick="showPage('sales-page', 'sales-card')" onkeydown="if(event.key === 'Enter' || event.key === ' ') showPage('sales-page', 'sales-card')" role="button" tabindex="0" aria-label="View High Ticket Sales Framework">
                     <h3>High Ticket Sales</h3>
                     <p>Facilitating complex closing cycles for high-value contracts through trust-based authority.</p>
                     <span class="expand-link">View Success Framework →</span>
@@ -215,22 +315,46 @@
             <p>Available for strategic management roles or high-value sales consultancy.</p>
             <div class="button-group">
                 <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="btn btn-primary">LinkedIn Profile</a>
-                <a href="mailto:sbrady@example.pro" class="btn btn-outline">Send Message</a>
+                <button id="contact-trigger" onclick="showPage('contact-page', 'contact-trigger')" class="btn btn-outline">Send Message</button>
                 <a href="resume.pdf" download class="btn btn-outline">Download CV</a>
             </div>
         </section>
     </div>
 
-    <div id="b2b-page" class="full-page-overlay">
-        <button class="close-btn" onclick="hidePage('b2b-page')">Back to Portfolio</button>
-        <h1 style="color: var(--primary); margin-bottom: 1.5rem;">B2B Strategic Operations</h1>
+    <div id="b2b-page" class="full-page-overlay" role="dialog" aria-modal="true" aria-labelledby="b2b-title">
+        <button class="close-btn" onclick="hidePage('b2b-page')">✕ Back</button>
+        <h1 id="b2b-title" style="color: var(--primary); margin-bottom: 1.5rem;">B2B Strategic Operations</h1>
         <p>This methodology focuses on the lifecycle of a business relationship—from initial procurement analysis to long-term contract retention.</p>
     </div>
 
-    <div id="sales-page" class="full-page-overlay">
-        <button class="close-btn" onclick="hidePage('sales-page')">Back to Portfolio</button>
-        <h1 style="color: var(--primary); margin-bottom: 1.5rem;">High Ticket Sales Framework</h1>
+    <div id="sales-page" class="full-page-overlay" role="dialog" aria-modal="true" aria-labelledby="sales-title">
+        <button class="close-btn" onclick="hidePage('sales-page')">✕ Back</button>
+        <h1 id="sales-title" style="color: var(--primary); margin-bottom: 1.5rem;">High Ticket Sales Framework</h1>
         <p>A psychology-driven approach to high-stakes negotiation, ensuring both parties align on value, authority, and execution.</p>
+    </div>
+
+    <div id="contact-page" class="full-page-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+        <button class="close-btn" onclick="hidePage('contact-page')">✕ Back</button>
+        
+        <div class="form-container">
+            <h1 id="contact-title" style="color: var(--primary); margin-bottom: 0.5rem;">Let's Connect</h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Drop me a message below and I'll get back to you shortly.</p>
+            
+            <form action="https://formspree.io/f/YOUR_ENDPOINT_HERE" method="POST" class="contact-form">
+                <div>
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div>
+                    <input type="email" name="_replyto" placeholder="Your Email Address" required>
+                </div>
+                <div>
+                    <textarea name="message" placeholder="How can we collaborate?" required></textarea>
+                </div>
+                <input type="text" name="_gotcha" style="display:none" />
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Send Message</button>
+            </form>
+        </div>
     </div>
 
     <footer>
@@ -245,6 +369,8 @@
             const el = document.getElementById(id);
             el.style.display = "block";
             document.body.style.overflow = "hidden";
+            
+            // Manage focus
             const btn = el.querySelector('.close-btn');
             if (btn) setTimeout(() => btn.focus(), 100);
         }
@@ -255,6 +381,7 @@
             if (lastFocus) lastFocus.focus();
         }
 
+        // Close via escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") {
                 const open = document.querySelector('.full-page-overlay[style*="display: block"]');
