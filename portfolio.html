@@ -15,6 +15,10 @@
             --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -50,6 +54,7 @@
             font-size: 0.85rem;
         }
 
+        /* Navigation */
         nav {
             background: var(--white);
             padding: 1.2rem;
@@ -69,7 +74,7 @@
         nav ul li a {
             color: var(--text-main);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.9rem;
             transition: color 0.2s;
         }
@@ -78,7 +83,7 @@
             color: var(--primary);
         }
 
-        /* Professional Sections */
+        /* Professional Content Sections */
         section {
             max-width: 900px;
             margin: 3rem auto;
@@ -96,6 +101,7 @@
             padding-left: 1rem;
         }
 
+        /* Skill Grid for B2B/High Ticket */
         .highlight-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -113,24 +119,31 @@
         .skill-card h3 {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
+            color: var(--text-main);
         }
 
-        /* Contact CTA */
+        .skill-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Contact Link Styled as a Button */
         .contact-btn {
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
             margin-top: 1rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .contact-btn:hover {
             background: #047857;
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.3);
         }
 
         footer {
@@ -140,10 +153,12 @@
             font-size: 0.9rem;
         }
 
+        /* Mobile Optimization */
         @media (max-width: 768px) {
             .highlight-grid { grid-template-columns: 1fr; }
             header h1 { font-size: 2.2rem; }
             section { margin: 1rem; padding: 1.5rem; }
+            nav ul { gap: 1.5rem; }
         }
     </style>
 </head>
@@ -163,35 +178,35 @@
     </nav>
 
     <section id="about">
-        <h2>About Me</h2>
-        <p>I am a dedicated professional currently pursuing my <strong>Bachelor’s Degree in Business Management</strong> at WGU. My background as a fitness professional has instilled a high-performance mindset that I now apply to business operations and strategic sales.</p>
-        <p>I focus on understanding the intersection of human behavior and technology, documenting my journey into professional management and high-level commerce.</p>
+        <h2>Executive Summary</h2>
+        <p>I am a dedicated professional currently pursuing my <strong>Bachelor’s Degree in Business Management</strong> at WGU. Transitioning from a high-performance background in the fitness industry, I bring a disciplined, results-oriented mindset to business operations and strategic sales.</p>
+        <p>My goal is to leverage my expertise in human behavior and market dynamics to drive corporate growth and manage complex client relationships.</p>
     </section>
 
     <section id="expertise">
         <h2>Core Competencies</h2>
         <div class="highlight-grid">
             <div class="skill-card">
-                <h3>Business to Business (B2B)</h3>
-                <p>Focused on building long-term corporate relationships and streamlining the procurement process through strategic communication.</p>
+                <h3>Business to Business (B2B) Sales</h3>
+                <p>Strategic outreach and relationship management focused on long-term corporate partnerships and value-driven procurement.</p>
             </div>
             <div class="skill-card">
                 <h3>High Ticket Sales</h3>
-                <p>Experienced in managing complex sales cycles and delivering high-value solutions that require trust, authority, and deep product knowledge.</p>
+                <p>Expertise in managing complex sales cycles for high-value assets, requiring authoritative product knowledge and trust-based closing techniques.</p>
             </div>
         </div>
     </section>
 
     <section id="contact" style="text-align: center;">
         <h2>Let's Collaborate</h2>
-        <p style="margin-bottom: 2rem;">Ready to discuss strategic partnerships or management opportunities.</p>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">Available for strategic partnerships, sales consultations, or management opportunities.</p>
         <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="contact-btn">
-            Connect on LinkedIn
+            View LinkedIn Profile
         </a>
     </section>
 
     <footer>
-        <p>&copy; 2026 Sheldon Brady • Professional Portfolio</p>
+        <p>&copy; 2026 Sheldon Brady • Business Management Portfolio</p>
     </footer>
 
 </body>
