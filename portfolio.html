@@ -25,7 +25,7 @@
             line-height: 1.7;
         }
 
-        /* Header & Nav */
+        /* Header Styles */
         header {
             background-color: #111827;
             color: var(--white);
@@ -48,11 +48,16 @@
         nav ul { list-style: none; display: flex; justify-content: center; gap: 3rem; }
         nav ul li a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
 
-        /* Content Sections */
-        section {
+        /* Section Layout */
+        .container {
             max-width: 900px;
-            margin: 3rem auto;
-            padding: 3rem;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
             background: var(--white);
             border-radius: 16px;
             box-shadow: var(--card-shadow);
@@ -60,87 +65,67 @@
 
         h2 { font-size: 1.75rem; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
 
-        .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+        /* Interactive Grid */
+        .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
         .skill-card {
             background: #f1f5f9;
             padding: 2rem;
             border-radius: 12px;
-            border-top: 4px solid var(--primary);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-card:hover { transform: translateY(-5px); }
-
-        /* Detail Buttons */
-        .view-btn {
-            margin-top: 1rem;
-            background: none;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 4px solid transparent;
         }
 
-        .view-btn:hover { background: var(--primary); color: white; }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-top: 4px solid var(--primary);
+            background: var(--white);
+            box-shadow: var(--card-shadow);
+        }
 
-        /* Modal (The "New Pages") */
-        .modal {
-            display: none;
+        .skill-card h3 { margin-bottom: 0.5rem; color: var(--text-main); }
+        .skill-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Full Screen "Page" Zoom Overlay */
+        .full-page-overlay {
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            backdrop-filter: blur(5px);
+            background: var(--white);
+            z-index: 2000;
+            display: none; /* Hidden by default */
+            overflow-y: auto;
+            padding: 10% 15%;
+            animation: zoomIn 0.4s ease forwards;
         }
 
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 3rem;
-            width: 80%;
-            max-width: 700px;
-            border-radius: 16px;
-            position: relative;
-            animation: slideIn 0.3s ease-out;
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 28px;
+        .close-btn {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
             cursor: pointer;
-            color: var(--text-muted);
+            color: var(--text-main);
+            background: #f1f5f9;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .contact-btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            margin-top: 1rem;
-        }
-
-        footer { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
-
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .highlight-grid { grid-template-columns: 1fr; }
-            .modal-content { width: 95%; padding: 1.5rem; }
+            .full-page-overlay { padding: 15% 10%; }
+            header h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -159,56 +144,64 @@
         </ul>
     </nav>
 
-    <section id="about">
-        <h2>Executive Summary</h2>
-        <p>Currently pursuing a <strong>Bachelor’s Degree in Business Management</strong> at WGU. I specialize in merging high-performance discipline with strategic B2B sales operations.</p>
-    </section>
+    <div class="container">
+        <section id="about">
+            <h2>Executive Summary</h2>
+            <p>Currently pursuing a <strong>Bachelor’s Degree in Business Management</strong> at WGU. My background as a fitness professional drives my high-performance approach to corporate sales and leadership.</p>
+        </section>
 
-    <section id="expertise">
-        <h2>Core Expertise</h2>
-        <div class="highlight-grid">
-            <div class="skill-card">
-                <h3>B2B Strategy</h3>
-                <p>Corporate relationship management and procurement cycles.</p>
-                <button class="view-btn" onclick="openModal('b2bModal')">View Case Study</button>
+        <section id="expertise">
+            <h2>Core Expertise</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Click a block below to view the full details.</p>
+            
+            <div class="highlight-grid">
+                <div class="skill-card" onclick="showPage('b2b-page')">
+                    <h3>B2B Strategy</h3>
+                    <p>Focusing on corporate relationship management and procurement cycles.</p>
+                    <small style="color: var(--primary); font-weight: bold;">Click to Expand →</small>
+                </div>
+
+                <div class="skill-card" onclick="showPage('sales-page')">
+                    <h3>High Ticket Sales</h3>
+                    <p>Managing high-value closing cycles and trust-based authority.</p>
+                    <small style="color: var(--primary); font-weight: bold;">Click to Expand →</small>
+                </div>
             </div>
-            <div class="skill-card">
-                <h3>High Ticket Sales</h3>
-                <p>Managing high-value closing cycles and trust-building.</p>
-                <button class="view-btn" onclick="openModal('salesModal')">View Process</button>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" style="text-align: center;">
-        <h2>Let's Collaborate</h2>
-        <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="contact-btn">View LinkedIn Profile</a>
-    </section>
-
-    <div id="b2bModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('b2bModal')">&times;</span>
-            <h2 style="border:none; padding:0; color: var(--primary);">B2B Strategy & Operations</h2>
-            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #eee;">
-            <h4>Project Overview</h4>
-            <p>This is where you can describe your specific B2B approach. Mention things like CRM management, lead generation, and how you handle corporate gatekeepers.</p>
-            <br>
-            <h4>Key Results</h4>
-            <ul>
-                <li>Optimized procurement timelines by 15%</li>
-                <li>Developed strategic outreach scripts</li>
-            </ul>
-        </div>
+        <section id="contact" style="text-align: center;">
+            <h2>Let's Collaborate</h2>
+            <p style="margin-bottom: 1.5rem;">Ready to discuss management or high-ticket sales opportunities.</p>
+            <a href="https://www.linkedin.com/in/sbrady21" target="_blank" style="background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: bold;">LinkedIn Profile</a>
+        </section>
     </div>
 
-    <div id="salesModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('salesModal')">&times;</span>
-            <h2 style="border:none; padding:0; color: var(--primary);">High Ticket Sales Process</h2>
-            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #eee;">
-            <h4>The Closing Philosophy</h4>
-            <p>Detail your experience with high-value transactions. Talk about the psychological aspect of high-ticket sales and how you build long-term authority with clients.</p>
-        </div>
+    <div id="b2b-page" class="full-page-overlay">
+        <div class="close-btn" onclick="hidePage('b2b-page')">✕ Close</div>
+        <h1 style="color: var(--primary); margin-bottom: 2rem;">B2B Strategic Operations</h1>
+        <h2>Market Approach</h2>
+        <p>In the B2B landscape, the goal is long-term sustainability. My process involves identifying key decision-makers and understanding the specific pain points of an organization before the first outreach.</p>
+        <br>
+        <h2>Methodology</h2>
+        <ul>
+            <li><strong>CRM Integration:</strong> Utilizing data to track lead behavior.</li>
+            <li><strong>Value-Based Selling:</strong> Focusing on ROI rather than just features.</li>
+            <li><strong>Account Management:</strong> Ensuring post-sale satisfaction for retention.</li>
+        </ul>
+    </div>
+
+    <div id="sales-page" class="full-page-overlay">
+        <div class="close-btn" onclick="hidePage('sales-page')">✕ Close</div>
+        <h1 style="color: var(--primary); margin-bottom: 2rem;">High Ticket Sales Mastery</h1>
+        <h2>The Closing Framework</h2>
+        <p>High ticket sales isn't about "selling"—it's about "consulting." When the price point is high, the level of trust must be even higher.</p>
+        <br>
+        <h2>Core Principles</h2>
+        <ul>
+            <li><strong>Authority Building:</strong> Establishing myself as an expert in the field.</li>
+            <li><strong>Objection Handling:</strong> Addressing concerns with data and empathy.</li>
+            <li><strong>Emotional Intelligence:</strong> Reading the client to know when to push and when to listen.</li>
+        </ul>
     </div>
 
     <footer>
@@ -216,22 +209,16 @@
     </footer>
 
     <script>
-        function openModal(id) {
+        function showPage(id) {
             document.getElementById(id).style.display = "block";
-            document.body.style.overflow = "hidden"; // Stops background scrolling
+            // Disable background scrolling while "page" is open
+            document.body.style.overflow = "hidden";
         }
 
-        function closeModal(id) {
+        function hidePage(id) {
             document.getElementById(id).style.display = "none";
-            document.body.style.overflow = "auto"; // Enables background scrolling
-        }
-
-        // Close modal if user clicks outside of the box
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                event.target.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
+            // Re-enable background scrolling
+            document.body.style.overflow = "auto";
         }
     </script>
 
