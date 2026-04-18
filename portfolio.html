@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sheldon Brady | Business Management Portfolio</title>
+    
+    <meta name="description" content="Portfolio of Sheldon Brady, specializing in Business Management, B2B Strategy, and High Ticket Sales.">
+    
+    <meta property="og:title" content="Sheldon Brady | Business Management Portfolio">
+    <meta property="og:description" content="Specializing in B2B Strategy and High Ticket Sales.">
+    <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -16,7 +22,7 @@
             --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        /* FIX: Added scroll-padding-top to prevent nav overlap */
+        /* Fixed scrolling offset for sticky nav */
         html { 
             scroll-behavior: smooth; 
             scroll-padding-top: 80px; 
@@ -168,7 +174,6 @@
             transform: translateY(-2px);
         }
 
-        /* Style for the tertiary Resume button */
         .contact-btn.tertiary {
             background: transparent;
             color: var(--text-muted);
@@ -264,14 +269,11 @@
         let lastFocusedElement = null;
 
         function showPage(pageId, triggerId) {
-            // Save the current trigger element to return focus later
             lastFocusedElement = document.getElementById(triggerId);
-            
             const overlay = document.getElementById(pageId);
             overlay.style.display = "block";
             document.body.style.overflow = "hidden";
             
-            // Programmatically shift focus to the "Close" button
             const closeBtn = overlay.querySelector('.close-btn');
             if (closeBtn) {
                 setTimeout(() => closeBtn.focus(), 100); 
@@ -281,14 +283,11 @@
         function hidePage(pageId) {
             document.getElementById(pageId).style.display = "none";
             document.body.style.overflow = "auto";
-
-            // Return focus to the original card
             if (lastFocusedElement) {
                 lastFocusedElement.focus();
             }
         }
 
-        // Close on Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === "Escape") {
                 const openOverlay = document.querySelector('.full-page-overlay[style*="display: block"]');
