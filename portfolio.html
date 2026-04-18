@@ -16,7 +16,12 @@
             --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        html { scroll-behavior: smooth; }
+        /* FIX: Added scroll-padding-top to prevent nav overlap */
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: 80px; 
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -155,11 +160,25 @@
             border-radius: 8px;
             font-weight: bold;
             transition: background 0.3s ease, transform 0.2s ease;
+            border: 2px solid var(--primary);
         }
 
         .contact-btn:hover {
             background: var(--primary-hover);
             transform: translateY(-2px);
+        }
+
+        /* Style for the tertiary Resume button */
+        .contact-btn.tertiary {
+            background: transparent;
+            color: var(--text-muted);
+            border-color: #cbd5e1;
+        }
+
+        .contact-btn.tertiary:hover {
+            background: #f1f5f9;
+            color: var(--text-main);
+            border-color: #94a3b8;
         }
 
         footer { text-align: center; padding: 2rem 1rem 4rem; color: var(--text-muted); font-size: 0.9rem; }
@@ -195,8 +214,8 @@
             <div class="highlight-grid">
                 <div class="skill-card" 
                      id="b2b-card"
-                     onclick="showPage('b2b-page')" 
-                     onkeydown="if(event.key === 'Enter') showPage('b2b-page')"
+                     onclick="showPage('b2b-page', 'b2b-card')" 
+                     onkeydown="if(event.key === 'Enter') showPage('b2b-page', 'b2b-card')"
                      role="button" 
                      tabindex="0">
                     <h3>B2B Strategy</h3>
@@ -205,8 +224,8 @@
 
                 <div class="skill-card" 
                      id="sales-card"
-                     onclick="showPage('sales-page')" 
-                     onkeydown="if(event.key === 'Enter') showPage('sales-page')"
+                     onclick="showPage('sales-page', 'sales-card')" 
+                     onkeydown="if(event.key === 'Enter') showPage('sales-page', 'sales-card')"
                      role="button" 
                      tabindex="0">
                     <h3>High Ticket Sales</h3>
@@ -220,18 +239,19 @@
             <div class="button-group">
                 <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="contact-btn">LinkedIn Profile</a>
                 <a href="mailto:your.email@example.com" class="contact-btn">Email Me</a>
+                <a href="resume.pdf" download class="contact-btn tertiary">Download Resume (PDF)</a>
             </div>
         </section>
     </div>
 
     <div id="b2b-page" class="full-page-overlay" role="dialog" aria-modal="true">
-        <button class="close-btn" id="close-b2b" onclick="hidePage('b2b-page', 'b2b-card')">✕ Close Page</button>
+        <button class="close-btn" onclick="hidePage('b2b-page')">✕ Close Page</button>
         <h1 style="color: var(--primary); margin-bottom: 2rem;">B2B Strategic Operations</h1>
         <p>This section details my specific approach to Business-to-Business market expansion and operational efficiency.</p>
     </div>
 
     <div id="sales-page" class="full-page-overlay" role="dialog" aria-modal="true">
-        <button class="close-btn" id="close-sales" onclick="hidePage('sales-page', 'sales-card')">✕ Close Page</button>
+        <button class="close-btn" onclick="hidePage('sales-page')">✕ Close Page</button>
         <h1 style="color: var(--primary); margin-bottom: 2rem;">High Ticket Sales Mastery</h1>
         <p>Insights into the high-value sales cycle and the psychological frameworks required to close complex deals.</p>
     </div>
@@ -241,36 +261,40 @@
     </footer>
 
     <script>
-        let activePageId = null;
-        let activeTriggerId = null;
+        let lastFocusedElement = null;
 
-        function showPage(id) {
-            const overlay = document.getElementById(id);
+        function showPage(pageId, triggerId) {
+            // Save the current trigger element to return focus later
+            lastFocusedElement = document.getElementById(triggerId);
+            
+            const overlay = document.getElementById(pageId);
             overlay.style.display = "block";
             document.body.style.overflow = "hidden";
-            activePageId = id;
             
-            // Move focus to the close button inside the modal
+            // Programmatically shift focus to the "Close" button
             const closeBtn = overlay.querySelector('.close-btn');
-            if (closeBtn) closeBtn.focus();
-        }
-
-        function hidePage(id, triggerId) {
-            document.getElementById(id).style.display = "none";
-            document.body.style.overflow = "auto";
-            activePageId = null;
-
-            // Return focus to the card that opened the modal
-            if (triggerId) {
-                document.getElementById(triggerId).focus();
+            if (closeBtn) {
+                setTimeout(() => closeBtn.focus(), 100); 
             }
         }
 
+        function hidePage(pageId) {
+            document.getElementById(pageId).style.display = "none";
+            document.body.style.overflow = "auto";
+
+            // Return focus to the original card
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+
+        // Close on Escape key
         document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape" && activePageId) {
-                // Determine which card to return focus to
-                const triggerId = activePageId === 'b2b-page' ? 'b2b-card' : 'sales-card';
-                hidePage(activePageId, triggerId);
+            if (event.key === "Escape") {
+                const openOverlay = document.querySelector('.full-page-overlay[style*="display: block"]');
+                if (openOverlay) {
+                    hidePage(openOverlay.id);
+                }
             }
         });
     </script>
