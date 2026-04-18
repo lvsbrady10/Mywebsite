@@ -25,7 +25,6 @@
             line-height: 1.7;
         }
 
-        /* Header Styles */
         header {
             background-color: #111827;
             color: var(--white);
@@ -48,7 +47,6 @@
         nav ul { list-style: none; display: flex; justify-content: center; gap: 3rem; }
         nav ul li a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
 
-        /* Section Layout */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -65,29 +63,29 @@
 
         h2 { font-size: 1.75rem; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
 
-        /* Interactive Grid */
         .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
+        /* Cleaned up card style */
         .skill-card {
             background: #f1f5f9;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-top: 4px solid transparent;
+            border: 1px solid transparent;
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
-            border-top: 4px solid var(--primary);
+            transform: translateY(-8px);
             background: var(--white);
-            box-shadow: var(--card-shadow);
+            border-color: var(--primary);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        .skill-card h3 { margin-bottom: 0.5rem; color: var(--text-main); }
+        .skill-card h3 { margin-bottom: 0.5rem; color: var(--text-main); font-size: 1.25rem; }
         .skill-card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* Full Screen "Page" Zoom Overlay */
+        /* Full Screen Overlay */
         .full-page-overlay {
             position: fixed;
             top: 0;
@@ -96,14 +94,14 @@
             height: 100%;
             background: var(--white);
             z-index: 2000;
-            display: none; /* Hidden by default */
+            display: none;
             overflow-y: auto;
-            padding: 10% 15%;
+            padding: 8% 15%;
             animation: zoomIn 0.4s ease forwards;
         }
 
         @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.95); }
+            from { opacity: 0; transform: scale(0.98); }
             to { opacity: 1; transform: scale(1); }
         }
 
@@ -111,21 +109,39 @@
             position: fixed;
             top: 30px;
             right: 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             cursor: pointer;
-            color: var(--text-main);
-            background: #f1f5f9;
-            padding: 10px 20px;
-            border-radius: 50px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: var(--white);
+            background: #111827;
+            padding: 12px 24px;
+            border-radius: 6px;
+            transition: background 0.2s;
         }
 
-        /* Mobile Adjustments */
+        .close-btn:hover { background: var(--primary); }
+
+        .contact-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .contact-btn:hover { opacity: 0.9; }
+
+        footer { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
+
         @media (max-width: 768px) {
             .highlight-grid { grid-template-columns: 1fr; }
-            .full-page-overlay { padding: 15% 10%; }
-            header h1 { font-size: 2.2rem; }
+            .full-page-overlay { padding: 15% 8%; }
+            .close-btn { top: 20px; right: 20px; width: calc(100% - 40px); text-align: center; }
         }
     </style>
 </head>
@@ -147,24 +163,20 @@
     <div class="container">
         <section id="about">
             <h2>Executive Summary</h2>
-            <p>Currently pursuing a <strong>Bachelor’s Degree in Business Management</strong> at WGU. My background as a fitness professional drives my high-performance approach to corporate sales and leadership.</p>
+            <p>Currently pursuing a <strong>Bachelor’s Degree in Business Management</strong> at WGU. My approach combines high-performance discipline with a strategic focus on corporate growth and relationship architecture.</p>
         </section>
 
         <section id="expertise">
             <h2>Core Expertise</h2>
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Click a block below to view the full details.</p>
-            
             <div class="highlight-grid">
                 <div class="skill-card" onclick="showPage('b2b-page')">
                     <h3>B2B Strategy</h3>
-                    <p>Focusing on corporate relationship management and procurement cycles.</p>
-                    <small style="color: var(--primary); font-weight: bold;">Click to Expand →</small>
+                    <p>Optimizing corporate relationship management and procurement cycles through data-driven outreach.</p>
                 </div>
 
                 <div class="skill-card" onclick="showPage('sales-page')">
                     <h3>High Ticket Sales</h3>
-                    <p>Managing high-value closing cycles and trust-based authority.</p>
-                    <small style="color: var(--primary); font-weight: bold;">Click to Expand →</small>
+                    <p>Leading high-value closing cycles with a focus on trust, authority, and complex problem-solving.</p>
                 </div>
             </div>
         </section>
@@ -172,55 +184,36 @@
         <section id="contact" style="text-align: center;">
             <h2>Let's Collaborate</h2>
             <p style="margin-bottom: 1.5rem;">Ready to discuss management or high-ticket sales opportunities.</p>
-            <a href="https://www.linkedin.com/in/sbrady21" target="_blank" style="background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: bold;">LinkedIn Profile</a>
+            <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="contact-btn">LinkedIn Profile</a>
         </section>
     </div>
 
     <div id="b2b-page" class="full-page-overlay">
-        <div class="close-btn" onclick="hidePage('b2b-page')">✕ Close</div>
+        <div class="close-btn" onclick="hidePage('b2b-page')">✕ Close Page</div>
         <h1 style="color: var(--primary); margin-bottom: 2rem;">B2B Strategic Operations</h1>
-        <h2>Market Approach</h2>
-        <p>In the B2B landscape, the goal is long-term sustainability. My process involves identifying key decision-makers and understanding the specific pain points of an organization before the first outreach.</p>
-        <br>
-        <h2>Methodology</h2>
-        <ul>
-            <li><strong>CRM Integration:</strong> Utilizing data to track lead behavior.</li>
-            <li><strong>Value-Based Selling:</strong> Focusing on ROI rather than just features.</li>
-            <li><strong>Account Management:</strong> Ensuring post-sale satisfaction for retention.</li>
-        </ul>
-    </div>
+        <p>This section details my specific approach to Business-to-Business market expansion and operational efficiency.</p>
+        </div>
 
     <div id="sales-page" class="full-page-overlay">
-        <div class="close-btn" onclick="hidePage('sales-page')">✕ Close</div>
+        <div class="close-btn" onclick="hidePage('sales-page')">✕ Close Page</div>
         <h1 style="color: var(--primary); margin-bottom: 2rem;">High Ticket Sales Mastery</h1>
-        <h2>The Closing Framework</h2>
-        <p>High ticket sales isn't about "selling"—it's about "consulting." When the price point is high, the level of trust must be even higher.</p>
-        <br>
-        <h2>Core Principles</h2>
-        <ul>
-            <li><strong>Authority Building:</strong> Establishing myself as an expert in the field.</li>
-            <li><strong>Objection Handling:</strong> Addressing concerns with data and empathy.</li>
-            <li><strong>Emotional Intelligence:</strong> Reading the client to know when to push and when to listen.</li>
-        </ul>
-    </div>
+        <p>Insights into the high-value sales cycle and the psychological frameworks required to close complex deals.</p>
+        </div>
 
     <footer>
-        <p>&copy; 2026 Sheldon Brady • Professional Portfolio</p>
+        <p>&copy; 2026 Sheldon Brady</p>
     </footer>
 
     <script>
         function showPage(id) {
             document.getElementById(id).style.display = "block";
-            // Disable background scrolling while "page" is open
             document.body.style.overflow = "hidden";
         }
 
         function hidePage(id) {
             document.getElementById(id).style.display = "none";
-            // Re-enable background scrolling
             document.body.style.overflow = "auto";
         }
     </script>
-
 </body>
 </html>
