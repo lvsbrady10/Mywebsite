@@ -3,58 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
+    <title>Sheldon Brady | IT & Cybersecurity Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Add your CSS styles here */
+        :root {
+            --primary: #6366f1; /* Modern Indigo */
+            --bg: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.7;
         }
+
+        /* Header & Navigation */
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
+            background-color: #0f172a; /* Deep Navy */
+            color: var(--white);
+            padding: 4rem 1rem;
             text-align: center;
         }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+        }
+
         nav {
-            background-color: #444;
-            padding: 10px;
+            background: var(--white);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            z-index: 100;
         }
+
         nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            text-align: center;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
         }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
+
         nav ul li a {
-            color: #fff;
+            color: var(--text-main);
             text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content Sections */
         section {
-            padding: 20px;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
         }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::after {
+            content: "";
+            height: 2px;
+            background: #e2e8f0;
+            flex-grow: 1;
+        }
+
+        .portfolio-item {
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: #fdfdfd;
+        }
+
+        /* Buttons/Links */
+        .contact-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+
         footer {
-            background-color: #333;
-            color: #fff;
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            section { margin: 1rem; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <h1>Sheldon Brady</h1>
-        <p>IT Professonal | Web Designer | Cybersecurity Professonal</p>
+        <p>IT Professional | Web Designer | Cybersecurity Student</p>
     </header>
+
     <nav>
         <ul>
             <li><a href="#about">About</a></li>
@@ -62,27 +156,33 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
+
     <section id="about">
         <h2>About Me</h2>
-        <p> I am a current student at WGU studying Cybersecurity and information Systems.</p>
-        <p> I am a fitness professonal who is learning how technology really works, documenting my experiences with my portfolio.</p>
-        <p> My goal is to always inprove my skill an keep learning with the new technology.</p>
-        </p>
+        <p>I am a student at <strong>WGU</strong> specializing in Cybersecurity and Information Systems. With a background as a fitness professional, I bring a unique discipline to the world of technology.</p>
+        <p>My focus is on documenting my transition into tech and building a robust foundation in network security and web architecture.</p>
     </section>
+
     <section id="portfolio">
         <h2>Portfolio</h2>
-        <p> Learning how to post my website process with the image here....</p>
-        <p> As well as a disctription on how I created the website.</p>
-
+        <div class="portfolio-item">
+            <h3>Website Development Project</h3>
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">Process Documentation</p>
+            <p>Developing this responsive portfolio allowed me to practice semantic HTML5 and modern CSS Grid/Flexbox layouts.</p>
+        </div>
     </section>
+
     <section id="contact">
         <h2>Contact</h2>
-        <a href="www.linkedin.com/in/sbrady21" target=_blank Title="This takes you to my linked in profile " >
-        <p>linked in </p>
+        <p style="margin-bottom: 1.5rem;">Let's connect and discuss technology or security opportunities.</p>
+        <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="contact-link">
+            View LinkedIn Profile
         </a>
     </section>
+
     <footer>
-        <p>&copy; 2024 Sheldon Brady</p>
+        <p>&copy; 2026 Sheldon Brady • Built with clean code</p>
     </footer>
+
 </body>
 </html>
