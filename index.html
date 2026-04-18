@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sheldon Brady | Business Management & Sales Professional</title>
+    <title>Sheldon Brady | Business Management Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #059669; /* Business Growth Green */
+            --primary: #059669;
             --bg: #f8fafc;
             --text-main: #0f172a;
             --text-muted: #475569;
@@ -15,11 +15,8 @@
             --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -28,27 +25,16 @@
             line-height: 1.7;
         }
 
-        /* Hero Header */
+        /* Header Styles */
         header {
-            background-color: #111827; /* Sophisticated Charcoal */
+            background-color: #111827;
             color: var(--white);
             padding: 5rem 1rem;
             text-align: center;
         }
 
-        header h1 {
-            font-size: 2.8rem;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.75rem;
-        }
-
-        header p {
-            color: #10b981; /* Accent Green */
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-size: 0.85rem;
-        }
+        header h1 { font-size: 2.8rem; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+        header p { color: #10b981; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; }
 
         nav {
             background: var(--white);
@@ -59,91 +45,87 @@
             z-index: 100;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-        }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 3rem; }
+        nav ul li a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
 
-        nav ul li a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary);
-        }
-
-        /* Professional Sections */
-        section {
+        /* Section Layout */
+        .container {
             max-width: 900px;
-            margin: 3rem auto;
-            padding: 3rem;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
             background: var(--white);
             border-radius: 16px;
             box-shadow: var(--card-shadow);
         }
 
-        h2 {
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-            color: #1e293b;
-            border-left: 4px solid var(--primary);
-            padding-left: 1rem;
-        }
+        h2 { font-size: 1.75rem; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
 
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
+        /* Interactive Grid */
+        .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
         .skill-card {
             background: #f1f5f9;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-top: 3px solid var(--primary);
+            padding: 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 4px solid transparent;
         }
 
-        .skill-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-top: 4px solid var(--primary);
+            background: var(--white);
+            box-shadow: var(--card-shadow);
         }
 
-        /* Contact CTA */
-        .contact-btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            margin-top: 1rem;
-            transition: all 0.3s;
+        .skill-card h3 { margin-bottom: 0.5rem; color: var(--text-main); }
+        .skill-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Full Screen "Page" Zoom Overlay */
+        .full-page-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            z-index: 2000;
+            display: none; /* Hidden by default */
+            overflow-y: auto;
+            padding: 10% 15%;
+            animation: zoomIn 0.4s ease forwards;
         }
 
-        .contact-btn:hover {
-            background: #047857;
-            transform: scale(1.02);
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        footer {
-            text-align: center;
-            padding: 4rem 1rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .close-btn {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-main);
+            background: #f1f5f9;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .highlight-grid { grid-template-columns: 1fr; }
+            .full-page-overlay { padding: 15% 10%; }
             header h1 { font-size: 2.2rem; }
-            section { margin: 1rem; padding: 1.5rem; }
         }
     </style>
 </head>
@@ -156,44 +138,89 @@
 
     <nav>
         <ul>
-            <li><a href="#about">Executive Summary</a></li>
+            <li><a href="#about">Summary</a></li>
             <li><a href="#expertise">Expertise</a></li>
             <li><a href="#contact">Connect</a></li>
         </ul>
     </nav>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am a dedicated professional currently pursuing my <strong>Bachelor’s Degree in Business Management</strong> at WGU. My background as a fitness professional has instilled a high-performance mindset that I now apply to business operations and strategic sales.</p>
-        <p>I focus on understanding the intersection of human behavior and technology, documenting my journey into professional management and high-level commerce.</p>
-    </section>
+    <div class="container">
+        <section id="about">
+            <h2>Executive Summary</h2>
+            <p>Currently pursuing a <strong>Bachelor’s Degree in Business Management</strong> at WGU. My background as a fitness professional drives my high-performance approach to corporate sales and leadership.</p>
+        </section>
 
-    <section id="expertise">
-        <h2>Core Competencies</h2>
-        <div class="highlight-grid">
-            <div class="skill-card">
-                <h3>Business to Business (B2B)</h3>
-                <p>Focused on building long-term corporate relationships and streamlining the procurement process through strategic communication.</p>
-            </div>
-            <div class="skill-card">
-                <h3>High Ticket Sales</h3>
-                <p>Experienced in managing complex sales cycles and delivering high-value solutions that require trust, authority, and deep product knowledge.</p>
-            </div>
-        </div>
-    </section>
+        <section id="expertise">
+            <h2>Core Expertise</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Click a block below to view the full details.</p>
+            
+            <div class="highlight-grid">
+                <div class="skill-card" onclick="showPage('b2b-page')">
+                    <h3>B2B Strategy</h3>
+                    <p>Focusing on corporate relationship management and procurement cycles.</p>
+                    <small style="color: var(--primary); font-weight: bold;">Click to Expand →</small>
+                </div>
 
-    <section id="contact" style="text-align: center;">
-        <h2>Let's Collaborate</h2>
-        <p style="margin-bottom: 2rem;">Ready to discuss strategic partnerships or management opportunities.</p>
-        <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="contact-btn">
-            Connect on LinkedIn
-        </a>
-    </section>
+                <div class="skill-card" onclick="showPage('sales-page')">
+                    <h3>High Ticket Sales</h3>
+                    <p>Managing high-value closing cycles and trust-based authority.</p>
+                    <small style="color: var(--primary); font-weight: bold;">Click to Expand →</small>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="text-align: center;">
+            <h2>Let's Collaborate</h2>
+            <p style="margin-bottom: 1.5rem;">Ready to discuss management or high-ticket sales opportunities.</p>
+            <a href="https://www.linkedin.com/in/sbrady21" target="_blank" style="background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: bold;">LinkedIn Profile</a>
+        </section>
+    </div>
+
+    <div id="b2b-page" class="full-page-overlay">
+        <div class="close-btn" onclick="hidePage('b2b-page')">✕ Close</div>
+        <h1 style="color: var(--primary); margin-bottom: 2rem;">B2B Strategic Operations</h1>
+        <h2>Market Approach</h2>
+        <p>In the B2B landscape, the goal is long-term sustainability. My process involves identifying key decision-makers and understanding the specific pain points of an organization before the first outreach.</p>
+        <br>
+        <h2>Methodology</h2>
+        <ul>
+            <li><strong>CRM Integration:</strong> Utilizing data to track lead behavior.</li>
+            <li><strong>Value-Based Selling:</strong> Focusing on ROI rather than just features.</li>
+            <li><strong>Account Management:</strong> Ensuring post-sale satisfaction for retention.</li>
+        </ul>
+    </div>
+
+    <div id="sales-page" class="full-page-overlay">
+        <div class="close-btn" onclick="hidePage('sales-page')">✕ Close</div>
+        <h1 style="color: var(--primary); margin-bottom: 2rem;">High Ticket Sales Mastery</h1>
+        <h2>The Closing Framework</h2>
+        <p>High ticket sales isn't about "selling"—it's about "consulting." When the price point is high, the level of trust must be even higher.</p>
+        <br>
+        <h2>Core Principles</h2>
+        <ul>
+            <li><strong>Authority Building:</strong> Establishing myself as an expert in the field.</li>
+            <li><strong>Objection Handling:</strong> Addressing concerns with data and empathy.</li>
+            <li><strong>Emotional Intelligence:</strong> Reading the client to know when to push and when to listen.</li>
+        </ul>
+    </div>
 
     <footer>
         <p>&copy; 2026 Sheldon Brady • Professional Portfolio</p>
     </footer>
 
+    <script>
+        function showPage(id) {
+            document.getElementById(id).style.display = "block";
+            // Disable background scrolling while "page" is open
+            document.body.style.overflow = "hidden";
+        }
+
+        function hidePage(id) {
+            document.getElementById(id).style.display = "none";
+            // Re-enable background scrolling
+            document.body.style.overflow = "auto";
+        }
+    </script>
+
 </body>
 </html>
-
