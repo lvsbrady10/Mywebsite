@@ -166,7 +166,7 @@
 
         /* Connect Section Customization */
         .connect-box { text-align: center; }
-        .connect-box h2 { justify-content: center; } /* Fixes the vertical bar alignment */
+        .connect-box h2 { justify-content: center; } 
         .button-group { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
 
         .btn {
@@ -255,7 +255,7 @@
         @media (max-width: 768px) {
             .highlight-grid { grid-template-columns: 1fr; }
             .full-page-overlay { padding: 15% 8%; }
-            .full-page-overlay h1 { margin-top: 3rem; } /* Prevents text overlap with close button on mobile */
+            .full-page-overlay h1 { margin-top: 3rem; } 
         }
     </style>
 </head>
@@ -265,7 +265,7 @@
         <a href="#about">Summary</a>
         <a href="#experience">Experience</a>
         <a href="#expertise">Expertise</a>
-        <a href="#contact">Connect</a>
+        <a href="#contact">Contact Me</a>
     </nav>
 
     <header>
@@ -311,11 +311,11 @@
         </section>
 
         <section id="contact" class="connect-box">
-            <h2>Let's Collaborate</h2>
+            <h2>Contact Me</h2>
             <p>Available for strategic management roles or high-value sales consultancy.</p>
             <div class="button-group">
                 <a href="https://www.linkedin.com/in/sbrady21" target="_blank" class="btn btn-primary">LinkedIn Profile</a>
-                <button id="contact-trigger" onclick="showPage('contact-page', 'contact-trigger')" class="btn btn-outline">Send Message</button>
+                <button id="contact-trigger" onclick="showPage('contact-page', 'contact-trigger')" class="btn btn-outline">Contact Me</button>
                 <a href="resume.pdf" download class="btn btn-outline">Download CV</a>
             </div>
         </section>
@@ -337,7 +337,7 @@
         <button class="close-btn" onclick="hidePage('contact-page')">✕ Back</button>
         
         <div class="form-container">
-            <h1 id="contact-title" style="color: var(--primary); margin-bottom: 0.5rem;">Let's Connect</h1>
+            <h1 id="contact-title" style="color: var(--primary); margin-bottom: 0.5rem;">Contact Me</h1>
             <p style="color: var(--text-muted); margin-bottom: 2rem;">Drop me a message below and I'll get back to you shortly.</p>
             
             <form action="https://formspree.io/f/YOUR_ENDPOINT_HERE" method="POST" class="contact-form">
@@ -370,7 +370,6 @@
             el.style.display = "block";
             document.body.style.overflow = "hidden";
             
-            // Manage focus
             const btn = el.querySelector('.close-btn');
             if (btn) setTimeout(() => btn.focus(), 100);
         }
@@ -381,7 +380,6 @@
             if (lastFocus) lastFocus.focus();
         }
 
-        // Close via escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") {
                 const open = document.querySelector('.full-page-overlay[style*="display: block"]');
